@@ -1,5 +1,5 @@
-import { Project } from './Project/ProjectProps';
-
 export default class ProjectsState {
-  projects: Project[];
+  filterProjectName: string;
+  filterBranchName: string;
+  update: boolean;
 }

@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink, Redirect, Switch } from 'react-router-dom';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import IDSEProps from './IDSEProps';
 import IDSEState from './IDSEState';
@@ -10,19 +16,34 @@ import Metrics from '../Metrics';
 
 export default class IDSE extends React.Component<IDSEProps, IDSEState> {
     render() {
+        const linkStyle = {
+            textDecoration: 'none'
+        };
+        const buttonStyle = {
+            color: 'white'
+        }
         return (
-            <div className="IDSE">
-                <header>
-                    <nav>
-                        <ul>
-                            <li><Link to="/">Projects</Link></li>
-                            <li><Link to="/Metrics">Metrics</Link></li>
-                        </ul>
-                    </nav>
-                </header>
+            <div className="root">
+                <AppBar position="static">
+                    <Toolbar>
+                        <Typography variant="title" color="inherit" className="flex">
+                            IDSE Project Details
+                        </Typography>
+                        <NavLink to="/projects" exact={true} style={linkStyle}>
+                            <Button style={buttonStyle}>Projects</Button>
+                        </NavLink>
+                        <NavLink to="/metrics" exact={true} style={linkStyle}>
+                            <Button style={buttonStyle}>Metrics</Button>
+                        </NavLink>
+                    </Toolbar>
+                </AppBar>
                 <section>
-                    <Route path="/" exact={true} component={Projects} />
-                    <Route path="/Metrics" exact={true} component={Metrics} />
+                    <Switch>
+                        {/* <Route path="/" exact={true} component={Projects} /> */}
+                        <Route path="/projects" exact={true} component={Projects} />
+                        <Route path="/metrics" exact={true} component={Metrics} />
+                        <Redirect from="/" to="/projects" />
+                    </Switch>
                 </section>
             </div>
         );

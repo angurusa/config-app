@@ -8,3 +8,10 @@ export interface MetricsData {}
 
 // NODE: This interface should include all and only the options that change the style/behavior of the component
 export interface MetricsOptions {}
+
+export interface MetricData {
+  projectName: string;
+  avgDuration: number;
+  successPercentage: number;
+  mttr: number;
+}

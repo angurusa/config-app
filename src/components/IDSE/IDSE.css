@@ -1,23 +1,12 @@
-.IDSE ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  text-align: center;
+.root {
+  flex-grow: 1;
 }
 
-.IDSE li {
-  display: inline-block;
-  margin: 20px;
+.flex {
+  flex: 1;
 }
 
-.IDSE a {
-  text-decoration: none;
-  /* color: black; */
+a.active button {
+  font-weight: bold;
+  font-size: 100%;
 }
-
-.IDSE a:hover,
-.IDSE a:active  {
-  color: orange;
-}
-

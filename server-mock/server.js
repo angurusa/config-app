@@ -41,7 +41,7 @@ app.get('/builds/projects/:projectName', (req, res) => {
     if (result.length > 0)
       res.send(result);
     else
-      res.send(defaultProjectBuild);
+      res.send([defaultProjectBuild]);
 });
 
 app.get('/builds/projects/:projectName/branch/:branchName', (req, res) => {
@@ -74,7 +74,7 @@ app.get('/metrics/projects/:projectName', (req, res) => {
     if (result.length > 0)
       res.send(result[0]);
     else
-      res.send(defaultProjectMetric);
+      res.send([defaultProjectMetric]);
 });
 
 app.listen(8088, () => console.log('Server started at port 8088!!!'));
