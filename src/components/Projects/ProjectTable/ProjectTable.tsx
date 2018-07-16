@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Typography } from '@material-ui/core';
-import axios from './../../../axios';
+import { NavLink } from 'react-router-dom';
 
 import ProjectTableProps from './ProjectTableProps';
 import ProjectTableState from './ProjectTableState';
@@ -51,7 +49,9 @@ export default class ProjectTable extends React.Component<ProjectTableProps, Pro
                         return (
                         <TableRow className="row" key={index}>
                             <TableCell component="th" scope="row">
-                            {project.projectName}
+                            <NavLink to={'/projects/' + project.projectName + '/branch/' + project.branchName}>
+                                {project.projectName}
+                            </NavLink>
                             </TableCell>
                             <TableCell>{project.projectVersion}</TableCell>
                             <TableCell>{project.branchName}</TableCell>

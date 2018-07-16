@@ -1,6 +1,6 @@
 import { MetricData } from './../MetricsProps';
 
-export default interface MetricTableProps {
+export default interface MetricTableProps{
   options?: MetricTableOptions;
   data: MetricTableData;
 }

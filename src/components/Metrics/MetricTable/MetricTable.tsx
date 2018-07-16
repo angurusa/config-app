@@ -5,6 +5,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { NavLink } from 'react-router-dom';
 
 import MetricTableProps from './MetricTableProps';
 import MetricTableState from './MetricTableState';
@@ -41,7 +42,9 @@ export default class MetricTable extends React.Component<MetricTableProps, Metri
                         return (
                         <TableRow className="row" key={index}>
                             <TableCell component="th" scope="row">
-                            {metric.projectName}
+                            <NavLink to={'/metrics/' + metric.projectName}>
+                                {metric.projectName}
+                            </NavLink>
                             </TableCell>
                             <TableCell numeric={true}>{metric.avgDuration}</TableCell>
                             <TableCell numeric={true}>{metric.successPercentage}</TableCell>

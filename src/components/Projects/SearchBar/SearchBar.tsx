@@ -28,7 +28,6 @@ export default class SearchBar extends React.Component<SearchBarProps, SearchBar
             <div className="container">
                 <TextField
                     label="Project Name"
-                    // defaultValue={this.props.data.filterProjectName}
                     placeholder="idse-app-shell"
                     className="text-field"
                     helperText="Enter a project name to filter"
@@ -37,7 +36,6 @@ export default class SearchBar extends React.Component<SearchBarProps, SearchBar
                 {this.props.events.onCHangeBranchName &&
                 <TextField
                     label="Branch Name"
-                    // defaultValue={this.props.data.filterBranchName}
                     placeholder="master"
                     className="text-field"
                     helperText="Enter a branch name to filter"
