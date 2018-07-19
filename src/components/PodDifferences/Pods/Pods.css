@@ -1,0 +1,8 @@
+.pod-heading {
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.pod-details {
+  flex-direction: column;
+}

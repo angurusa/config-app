@@ -16,44 +16,27 @@ import IDSEProps from './IDSEProps';
 import IDSEState from './IDSEState';
 import './IDSE.css';
 
-import { getEnvArray, getCurrentEnv, getBaseUrl } from './../../config';
+import * as config from './../../config';
+import PodDifferences from './../PodDifferences';
 
 export default class IDSE extends React.Component<IDSEProps, IDSEState> {
     
     envArray: string[];
-    baseURL: string;
 
     constructor(props: IDSEProps) {
         super(props);
-        const env = getCurrentEnv();
+        const env = config.getCurrentEnv();
         this.state = {
             env
         };
-        this.envArray = getEnvArray();
-        this.setBaseUrl(env);
-        this.onButtonClick = this.onButtonClick.bind(this);
-    }
-
-    setBaseUrl(env: string) {
-        this.baseURL = getBaseUrl(env);
+        this.envArray = config.getEnvArray();
     }
 
     handleChange = (event: React.FormEvent<HTMLSelectElement>) => {
         const selectedValue = event.currentTarget.value;
         localStorage.setItem('env', selectedValue);
-        this.setBaseUrl(selectedValue);
         this.setState({ env: selectedValue });
     };
-
-    onButtonClick() {
-        axios({
-            baseURL: this.baseURL,
-            method: 'get',
-            url: '/user'
-        }).then((res) => {
-            console.log(res);
-        });
-    }
 
     render() {
         const linkStyle = {
@@ -69,14 +52,7 @@ export default class IDSE extends React.Component<IDSEProps, IDSEState> {
                         <Typography variant="title" color="inherit" className="flex">
                             IDSE Project Details
                         </Typography>
-                        {/* <NavLink to="/projects" exact={true} style={linkStyle}>
-                            <Button style={buttonStyle}>Projects</Button>
-                        </NavLink>
-                        <NavLink to="/metrics" exact={true} style={linkStyle}>
-                            <Button style={buttonStyle}>Metrics</Button>
-                        </NavLink> */}
-                        <button onClick={this.onButtonClick}>CLick Here</button>
-                        <FormControl className="form-control">
+                        <FormControl className="environment">
                             <NativeSelect
                                 value={this.state.env}
                                 onChange={this.handleChange}
@@ -91,6 +67,7 @@ export default class IDSE extends React.Component<IDSEProps, IDSEState> {
                     </Toolbar>
                 </AppBar>
                 <section>
+                <PodDifferences data={{}} />
                     <Switch>
                         {/* <Route path="/" exact={true} component={Projects} /> */}
                         {/* <Route path="/projects" exact={true} component={Projects} />

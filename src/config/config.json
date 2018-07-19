@@ -1,8 +1,13 @@
 {
     "environment": {
-        "prod": "https://www.google.com",
-        "qa": "https://qa.google.com",
-        "test": "https://test.google.com",
-        "dev": "https://dev.google.com"
+        "prod": "",
+        "qa": "http://zlt19578.vci.att.com:30001/",
+        "test": "http://zlt19578.vci.att.com:30001/",
+        "dev": "http://zlt19578.vci.att.com:30001/"
+    },
+    "namespaces": {
+        "com-att-idp-directvnow": ["DirecTVNowOrderMs", "Something else"],
+        "com-att-idp-wireless": ["WirelessMs", "Something else"],
+        "com-att-idp-checkout": ["CheckoutMs", "Something else"]
     }
 }

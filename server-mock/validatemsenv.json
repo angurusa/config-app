@@ -1,0 +1,23 @@
+[
+  {
+      "msName": "DirecTVNowOrderMs",
+      "podEnvPropertyMismatches": [
+          {
+              "podIp": "10.233.65.48",
+              "name": "catalog.getAllAddons.url",
+              "expectedValue": "https://catalogms.com-att-idp.svc.cluster.local/msapi/catalog/v1/offers/%s/dtvnAddons",
+              "actualValue": null
+          },
+          {
+              "podIp": "10.233.69.222",
+              "name": "catalog.getAllAddons.url",
+              "expectedValue": "https://catalogms.com-att-idp.svc.cluster.local/msapi/catalog/v1/offers/%s/dtvnAddons",
+              "actualValue": null
+          }
+      ]
+  },
+  {
+      "msName": "CatalogMs",
+      "podEnvPropertyMismatches": []
+  }
+]
