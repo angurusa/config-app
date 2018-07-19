@@ -1,0 +1,8 @@
+{
+    "environment": {
+        "prod": "https://www.google.com",
+        "qa": "https://qa.google.com",
+        "test": "https://test.google.com",
+        "dev": "https://dev.google.com"
+    }
+}

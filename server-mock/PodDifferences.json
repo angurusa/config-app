@@ -1,0 +1,72 @@
+{
+    "msName": "DirecTVNowOrderMs",
+    "namespace": "com-att-idp-directvnow",
+    "pods": [
+        {
+            "podIp": "10.233.65.48",
+            "podName": "directvnoworderms-6445998687-c7qkp",
+            "status": "Running",
+            "mismatchedProperties": [
+                {
+                    "name": "catalina.base",
+                    "value": "/tmp/tomcat.5816365574634239987.8443"
+                },
+                {
+                    "name": "catalina.home",
+                    "value": "/tmp/tomcat.5816365574634239987.8443"
+                },
+                {
+                    "name": "HOSTNAME",
+                    "value": "directvnoworderms-6445998687-c7qkp"
+                },
+                {
+                    "name": "random.number.second",
+                    "value": "0.508543692314535"
+                },
+                {
+                    "name": "PID",
+                    "value": "38"
+                },
+                {
+                    "name": "random.number.first",
+                    "value": "0.01997296851734265"
+                }
+            ]
+        },
+        {
+            "podIp": "10.233.67.99",
+            "podName": "directvnoworderms-6445998687-hlt78",
+            "status": "Running",
+            "mismatchedProperties": [
+                {
+                    "name": "catalina.base",
+                    "value": "/tmp/tomcat.3760343889188099877.8443"
+                },
+                {
+                    "name": "catalina.home",
+                    "value": "/tmp/tomcat.3760343889188099877.8443"
+                },
+                {
+                    "name": "HOSTNAME",
+                    "value": "directvnoworderms-6445998687-hlt78"
+                },
+                {
+                    "name": "random.number.second",
+                    "value": "0.20853997359962118"
+                },
+                {
+                    "name": "PID",
+                    "value": "37"
+                },
+                {
+                    "name": "random.number.first",
+                    "value": "0.7606372585683233"
+                }
+            ]
+        }
+    ],
+    "podIps": [
+        "10.233.65.48",
+        "10.233.67.99"
+    ]
+}
