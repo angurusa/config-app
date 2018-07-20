@@ -1,6 +1,6 @@
 {
     "environment": {
-        "prod": "http://zlt19578.vci.att.com:30001/",
+        "prod": "",
         "qa": "http://zlt19578.vci.att.com:30001/",
         "test": "http://zlt19578.vci.att.com:30001/",
         "dev": "http://zlt19578.vci.att.com:30001/"

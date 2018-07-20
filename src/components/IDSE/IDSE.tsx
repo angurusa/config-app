@@ -26,10 +26,10 @@ export default class IDSE extends React.Component<IDSEProps, IDSEState> {
         this.envArray = config.getEnvArray();
     }
 
-    handleChange = (event: React.FormEvent<HTMLSelectElement>) => {
-        const selectedValue = event.currentTarget.value;
-        localStorage.setItem('env', selectedValue);
-        this.setState({ env: selectedValue });
+    handleChange = (event: React.SyntheticEvent) => {
+        const target = event.target as HTMLSelectElement;
+        localStorage.setItem('env', target.value);
+        this.setState({ env: target.value });
     };
 
     render() {
