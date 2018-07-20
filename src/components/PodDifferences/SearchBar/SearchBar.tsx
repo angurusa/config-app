@@ -63,7 +63,7 @@ export default class SearchBar extends React.Component<SearchBarProps, SearchBar
                 {
                     this.state.namespace &&
                     <FormControl className="form-control">
-                        <InputLabel htmlFor="msName">MicroService</InputLabel>
+                        <InputLabel htmlFor="msName">Micro service name</InputLabel>
                         <Select
                             value={this.state.msName}
                             onChange={this.handleChangeMsName}

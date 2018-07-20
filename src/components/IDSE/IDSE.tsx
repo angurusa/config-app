@@ -1,15 +1,9 @@
 import * as React from 'react';
 import { Route, NavLink, Redirect, Switch } from 'react-router-dom';
-import axios from 'axios';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
 import IDSEProps from './IDSEProps';
@@ -39,12 +33,6 @@ export default class IDSE extends React.Component<IDSEProps, IDSEState> {
     };
 
     render() {
-        const linkStyle = {
-            textDecoration: 'none'
-        };
-        const buttonStyle = {
-            color: 'white'
-        }
         return (
             <div className="root">
                 <AppBar position="static">

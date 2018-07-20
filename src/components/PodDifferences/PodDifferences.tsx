@@ -1,5 +1,4 @@
 import * as React from 'react';
-import axios from 'axios';
 import Typography from '@material-ui/core/Typography';
 
 import PodDifferencesProps from './PodDifferencesProps';
@@ -14,20 +13,25 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
 
     constructor(props: PodDifferencesProps) {
         super(props);
+        this.state = {
+            pods: []
+        }
         this.handleMsNameChange = this.handleMsNameChange.bind(this);
     }
 
     handleMsNameChange = (namespace: string, msName: string) => {
-        console.log(namespace + ' ' + msName);
         const API = config.getAxiosInstance();
         API.get('env/getMsPodDetails/namespaces/' + namespace + '/ms/' + msName).then((result) => {
-            console.log(result);
+            this.setState(()=>({
+                pods: result.data.pods
+            }));
         }).catch((err) => {
             console.log(err);
         });
     }
 
     render() {
+        const pods = this.state.pods;
         return (
             <div className="pod-differences">
                 <Typography variant="headline" gutterBottom={true}>
@@ -35,7 +39,12 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
                 </Typography>
                 <SearchBar data={{}} events={{onChangeMsName: this.handleMsNameChange}} />
                 <section className="pods">
-                    <Pods data={{}} />
+                    { 
+                        (Array.isArray(pods) && pods.length > 0) &&
+                        pods.map((pod, index)=>{
+                            return <Pods key={index} data={{pod}} />
+                        })
+                    }
                 </section>
             </div>
         );

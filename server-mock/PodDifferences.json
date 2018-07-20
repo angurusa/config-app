@@ -34,6 +34,37 @@
             ]
         },
         {
+            "podIp": "10.233.65.48",
+            "podName": "directvnoworderms-6445998687-c7qkp",
+            "status": "Running",
+            "mismatchedProperties": [
+                {
+                    "name": "catalina.base",
+                    "value": "/tmp/tomcat.5816365574634239987.8443"
+                },
+                {
+                    "name": "catalina.home",
+                    "value": "/tmp/tomcat.5816365574634239987.8443"
+                },
+                {
+                    "name": "HOSTNAME",
+                    "value": "directvnoworderms-6445998687-c7qkp"
+                },
+                {
+                    "name": "random.number.second",
+                    "value": "0.508543692314535"
+                },
+                {
+                    "name": "PID",
+                    "value": "38"
+                },
+                {
+                    "name": "random.number.first",
+                    "value": "0.01997296851734265"
+                }
+            ]
+        },
+        {
             "podIp": "10.233.67.99",
             "podName": "directvnoworderms-6445998687-hlt78",
             "status": "Running",

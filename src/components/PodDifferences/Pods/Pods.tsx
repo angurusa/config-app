@@ -13,20 +13,30 @@ import MismatchedProperties from './MismatchedProperties';
 
 export default class Pods extends React.Component<PodsProps, PodsState> {
     render() {
+        const {
+            podIp,
+            podName,
+            status,
+            mismatchedProperties
+        } = this.props.data.pod;
         return (
-            <div>
-                <ExpansionPanel>
-                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography className="pod-heading">Pod Name: Something</Typography>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails className="pod-details">
-                        <Typography>Pod Name: Something</Typography>
-                        <Typography>Pod IP: Something</Typography>
-                        <Typography>Status: Something</Typography>
-                        <MismatchedProperties data={{}} />
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
-            </div>
+            <ExpansionPanel>
+                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography className="pod-heading">Pod name: {podName}</Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails className="pod-details">
+                    <Typography>Pod name: {podName}</Typography>
+                    <Typography>Pod IP: {podIp}</Typography>
+                    <Typography>Status: {status}</Typography>
+                    { 
+                        (Array.isArray(mismatchedProperties) &&
+                        mismatchedProperties.length > 0) &&
+                        mismatchedProperties.map((mismatchedProperty, index)=>{
+                            return <MismatchedProperties key={index} data={{mismatchedProperty}}/>
+                        })
+                    }
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
         );
     }
 }

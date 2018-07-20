@@ -1,8 +1,10 @@
 .pods {
   width: 70%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin: auto;
+  text-align: left;
 }
 
 body, .pod-differences {
