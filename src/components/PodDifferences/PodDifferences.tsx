@@ -1,13 +1,19 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
-import PodDifferencesProps from './PodDifferencesProps';
+import PodDifferencesProps, { Pod } from './PodDifferencesProps';
 import PodDifferencesState from './PodDifferencesState';
 import './PodDifferences.css';
 
 import SearchBar from './SearchBar';
 import * as config from './../../config';
 import Pods from './Pods';
+import PodTable from './PodTable';
 
 export default class PodDifferences extends React.Component<PodDifferencesProps, PodDifferencesState> {
 
@@ -39,14 +45,49 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
                 </Typography>
                 <SearchBar data={{}} events={{onChangeMsName: this.handleMsNameChange}} />
                 <section className="pods">
-                    { 
-                        (Array.isArray(pods) && pods.length > 0) &&
-                        pods.map((pod, index)=>{
-                            return <Pods key={index} data={{pod}} />
-                        })
-                    }
+                    <Paper className="data-paper">
+                        <Table className="data-table" style={{display: 'flex'}}>
+                            {
+                                (Array.isArray(pods) && pods.length > 0) &&
+                                this.getFirstColumn(pods[0])
+                            }
+                            { 
+                                (Array.isArray(pods) && pods.length > 0) &&
+                                pods.map((pod, index)=>{
+                                    // return <Pods key={index} data={{pod}} />
+                                    return <PodTable key={index} data={{pod}} />
+                                })
+                            }
+                        </Table>
+                    </Paper>
                 </section>
             </div>
         );
     }
+
+    getFirstColumn(pod: Pod) {
+        return (
+            <TableBody style={{background: 'lightblue'}}>            
+                <TableRow>
+                    <TableCell className="table-cell"> Pod Name: </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="table-cell"> Pod IP: </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="table-cell"> Status: </TableCell>
+                </TableRow>
+                {
+                    pod.mismatchedProperties.map((property, index) => {
+                        return (
+                            <TableRow key={index}>
+                                <TableCell className="table-cell"> {property.name} </TableCell>
+                            </TableRow>
+                        )
+                    })
+                }
+            </TableBody>
+        );
+    }
+
 }

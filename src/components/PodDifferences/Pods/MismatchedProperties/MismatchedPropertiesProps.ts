@@ -1,4 +1,4 @@
-import { MismatchedProperty } from './../PodsProps';
+import { MismatchedProperty } from './../../PodDifferencesProps';
 
 export default interface MismatchedPropertiesProps {
   options?: MismatchedPropertiesOptions;

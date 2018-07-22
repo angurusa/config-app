@@ -1,5 +1,5 @@
-import { Pod } from './Pods/PodsProps';
+import { Pod } from './PodDifferencesProps';
 
 export default class PodDifferencesState {
-    pods: Pod[]
+    pods: Pod[];
 }
