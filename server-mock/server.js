@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const podDifferences = require('./PodDifferences.json');
+const compareInputs = require('./validatemsenv.json');
 const cors = require('cors');
 
 const app = express();
@@ -12,6 +13,9 @@ app.get('/env/getMsPodDetails/namespaces/:nameSpace/ms/:serviceName', (req, res)
     res.send(podDifferences);
 });
 
-// app.post('http://zlt19578.vci.att.com:30001/env/validatemsenv/', )
+app.post('/env/validatemsenv/', (req, res) => {
+    console.log(req.body);
+    res.send(compareInputs);
+});
 
 app.listen(8088, () => console.log('Server started at port 8088!!!'));

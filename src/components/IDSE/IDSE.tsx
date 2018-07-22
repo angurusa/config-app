@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import Button from '@material-ui/core/Button';
 
 import IDSEProps from './IDSEProps';
 import IDSEState from './IDSEState';
@@ -12,6 +13,7 @@ import './IDSE.css';
 
 import * as config from './../../config';
 import PodDifferences from './../PodDifferences';
+import CompareInput from './../CompareInput';
 
 export default class IDSE extends React.Component<IDSEProps, IDSEState> {
     
@@ -33,6 +35,15 @@ export default class IDSE extends React.Component<IDSEProps, IDSEState> {
     };
 
     render() {
+        const linkStyle = {
+            textDecoration: 'none'
+        };
+        const buttonStyle = {
+            color: 'white'
+        }
+        const environment = {
+            marginLeft: 20
+        };
         return (
             <div className="root">
                 <AppBar position="static">
@@ -40,7 +51,13 @@ export default class IDSE extends React.Component<IDSEProps, IDSEState> {
                         <Typography variant="title" color="inherit" className="flex">
                             IDSE Project Details
                         </Typography>
-                        <FormControl className="environment">
+                        <NavLink to="/single" exact={true} style={linkStyle}>
+                            <Button style={buttonStyle}>Single</Button>
+                        </NavLink>
+                        <NavLink to="/multiple" exact={true} style={linkStyle}>
+                            <Button style={buttonStyle}>Multiple</Button>
+                        </NavLink>
+                        <FormControl style={environment}>
                             <NativeSelect
                                 value={this.state.env}
                                 onChange={this.handleChange}
@@ -54,15 +71,11 @@ export default class IDSE extends React.Component<IDSEProps, IDSEState> {
                         </FormControl>
                     </Toolbar>
                 </AppBar>
-                <section>
-                <PodDifferences data={{}} />
+                <section className="app-body">
                     <Switch>
-                        {/* <Route path="/" exact={true} component={Projects} /> */}
-                        {/* <Route path="/projects" exact={true} component={Projects} />
-                        <Route path="/metrics" exact={true} component={Metrics} />
-                        <Route path="/metrics/:projectName" exact={true} component={FullMetrics} />
-                        <Route path="/projects/:projectName/branch/:branchName" exact={true} component={FullProject} />
-                        <Redirect from="/" to="/projects" /> */}
+                        <Route path="/single" exact={true} component={PodDifferences} />
+                        <Route path="/multiple" exact={true} component={CompareInput} />
+                        <Redirect from="/" to="/single" />
                     </Switch>
                 </section>
             </div>
