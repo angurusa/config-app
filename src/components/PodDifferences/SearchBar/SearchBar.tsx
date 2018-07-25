@@ -6,7 +6,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-import SearchBarProps from './SearchBarProps';
+import SearchBarProps, { MsDetails } from './SearchBarProps';
 import SearchBarState from './SearchBarState';
 import './SearchBar.css';
 
@@ -15,7 +15,7 @@ import * as config from '../../../config';
 export default class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
 
     nameSpaces: string[];
-    msNames: string[];
+    msDetails: MsDetails[];
     
     constructor(props: SearchBarProps) {
         super(props);
@@ -30,8 +30,13 @@ export default class SearchBar extends React.Component<SearchBarProps, SearchBar
 
     handleChangeNameSpace = (event: React.SyntheticEvent) => {
         const target = event.target as HTMLSelectElement;
-        this.msNames = config.getMicroServiceNames(target.value);
-        this.setState({ namespace: target.value });
+        const API = config.getAxiosInstance();
+        API.get('env/getMsNames/' + target.value).then((result) => {
+            this.msDetails = result.data;
+            this.setState({ namespace: target.value });
+        }).catch((err) => {
+            console.log(err);
+        });
     };
 
     handleChangeMsName = (event: React.SyntheticEvent) => {
@@ -73,9 +78,12 @@ export default class SearchBar extends React.Component<SearchBarProps, SearchBar
                             <MenuItem value="">
                                 <em>None</em>
                             </MenuItem>
-                            {this.msNames.map((msName, index) => (
-                                <MenuItem value={msName} key={index}>{msName}</MenuItem>
-                            ))}
+                            {
+                                (Array.isArray(this.msDetails) && this.msDetails.length > 0) &&
+                                this.msDetails.map((microService, index) => (
+                                    <MenuItem value={microService.msName} key={index}>{microService.msName}</MenuItem>
+                                ))
+                            }
                         </Select>
                         <FormHelperText>Select a micro service</FormHelperText>
                     </FormControl>

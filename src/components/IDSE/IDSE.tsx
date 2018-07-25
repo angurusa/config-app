@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route, NavLink, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch, NavLink } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -14,6 +14,7 @@ import './IDSE.css';
 import * as config from './../../config';
 import PodDifferences from './../PodDifferences';
 import CompareInput from './../CompareInput';
+import Home from '../Home';
 
 export default class IDSE extends React.Component<IDSEProps, IDSEState> {
     
@@ -35,15 +36,15 @@ export default class IDSE extends React.Component<IDSEProps, IDSEState> {
     };
 
     render() {
+        const environment = {
+            marginLeft: 20
+        };
         const linkStyle = {
             textDecoration: 'none'
         };
         const buttonStyle = {
             color: 'white'
         }
-        const environment = {
-            marginLeft: 20
-        };
         return (
             <div className="root">
                 <AppBar position="static">
@@ -51,11 +52,8 @@ export default class IDSE extends React.Component<IDSEProps, IDSEState> {
                         <Typography variant="title" color="inherit" className="flex">
                             IDSE Project Details
                         </Typography>
-                        <NavLink to="/single" exact={true} style={linkStyle}>
-                            <Button style={buttonStyle}>Single</Button>
-                        </NavLink>
-                        <NavLink to="/multiple" exact={true} style={linkStyle}>
-                            <Button style={buttonStyle}>Multiple</Button>
+                        <NavLink to="/home" exact={true} style={linkStyle}>
+                            <Button style={buttonStyle}>Home</Button>
                         </NavLink>
                         <FormControl style={environment}>
                             <NativeSelect
@@ -73,9 +71,10 @@ export default class IDSE extends React.Component<IDSEProps, IDSEState> {
                 </AppBar>
                 <section className="app-body">
                     <Switch>
+                        <Route path="/home" exact={true} component={Home} />                        
                         <Route path="/single" exact={true} component={PodDifferences} />
                         <Route path="/multiple" exact={true} component={CompareInput} />
-                        <Redirect from="/" to="/single" />
+                        <Redirect from="/" to="/home" />
                     </Switch>
                 </section>
             </div>

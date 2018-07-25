@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 
-import CompareInputProps from './CompareInputProps';
+import CompareInputProps, { PodEnvPropertyMismatch, MicroServiceOriginalData } from './CompareInputProps';
 import CompareInputState from './CompareInputState';
 import './CompareInput.css';
 
@@ -21,12 +21,33 @@ export default class CompareInput extends React.Component<CompareInputProps, Com
     handleSearchPropertiesSubmit = (properties: string) => {
         const API = config.getAxiosInstance();
         API.post('/env/validatemsenv/', {properties}).then((result) => {
+            const transformedData = result.data.map((singleData: MicroServiceOriginalData) => {
+                return {
+                    msName: singleData.msName,
+                    podEnvPropertyMismatches: this.transformArrayToObject(singleData.podEnvPropertyMismatches)
+                };
+            });
             this.setState(()=>({
-                microServicesData: result.data
+                microServicesData: transformedData
             }));
         }).catch((err) => {
+            this.setState(()=>({
+                microServicesData: []
+            }));
             console.log(err);
         });
+    }
+
+    transformArrayToObject(arr: PodEnvPropertyMismatch[]) {
+        const resultArr = {};
+        for (const element of arr) {
+            if (resultArr[element.podName]) {
+                resultArr[element.podName].push(element);
+            } else {
+                resultArr[element.podName] = [element];
+            }
+        }
+        return resultArr;
     }
 
     render() {
@@ -43,8 +64,8 @@ export default class CompareInput extends React.Component<CompareInputProps, Com
                     { 
                         (Array.isArray(microServicesData) && microServicesData.length > 0) &&
                         microServicesData.map((msData, index)=>{
-                            return (Array.isArray(msData.podEnvPropertyMismatches) && msData.podEnvPropertyMismatches.length > 0) && 
-                                <ShowMicroService key={index} data={{msData}} />
+                            // return (Array.isArray(msData.podEnvPropertyMismatches) && msData.podEnvPropertyMismatches.length > 0) && 
+                                return <ShowMicroService key={index} data={{msData}} />
                         })
                     }
                 </section>

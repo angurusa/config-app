@@ -13,3 +13,7 @@ export interface SearchBarOptions {}
 export interface SearchBarEvents {
   onChangeMsName(namespace: string, msName: string): void;
 }
+
+export interface MsDetails {
+  msName: string;
+}

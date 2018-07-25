@@ -18,7 +18,16 @@ export interface PodEnvPropertyMismatch {
     actualValue?: string | null | object | boolean | number | undefined;
 }
 
-export interface MicroServiceData {
+export interface MicroServiceOriginalData {
     msName: string;
     podEnvPropertyMismatches: PodEnvPropertyMismatch[];
+}
+
+export interface MicroServiceData {
+    msName: string;
+    podEnvPropertyMismatches: TransformedMismatches;
+}
+
+export interface TransformedMismatches {
+    [key: string]: PodEnvPropertyMismatch[];
 }

@@ -10,6 +10,13 @@
               "actualValue": null
           },
           {
+            "podIp": "10.233.65.48",
+            "podName": "Some",
+            "name": "catalog.getAllAddons.name",
+            "expectedValue": "https://catalogms.com-att-idp.svc.cluster.local/msapi/catalog/v1/offers/%s/dtvnAddons",
+            "actualValue": null
+        },
+          {
               "podIp": "10.233.69.222",
               "podName": "Some1",
               "name": "catalog.getAllAddons.url",
