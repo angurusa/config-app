@@ -2,8 +2,9 @@
   
 }
 
-.pod-name {
+.pod-header {
   background: lightblue;
   font-size: 1rem !important;
   font-weight: 500 !important;
+  height: 100px;
 }

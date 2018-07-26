@@ -2,6 +2,15 @@
   margin: 20px;
 }
 
+.error {
+  margin: 50px auto;
+  background-color: darkred;
+  padding: 20px;
+  font-size: 1.2rem;
+  color: white;
+  max-width: 600px;
+}
+
 body, .pod-differences {
   background-color: #EBF5FB;
 }

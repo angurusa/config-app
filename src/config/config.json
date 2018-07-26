@@ -6,6 +6,7 @@
         "dev": "http://zlt19578.vci.att.com:30001/"
     },
     "namespaces": {
+        "com-att-idp": [],
         "com-att-idp-directvnow": ["DirecTVNowOrderMs", "Something else"],
         "com-att-idp-wireless": ["WirelessMs", "Something else"],
         "com-att-idp-checkout": ["CheckoutMs", "Something else"]

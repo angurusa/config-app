@@ -31,7 +31,7 @@ export default class SearchBar extends React.Component<SearchBarProps, SearchBar
     handleChangeNameSpace = (event: React.SyntheticEvent) => {
         const target = event.target as HTMLSelectElement;
         const API = config.getAxiosInstance();
-        API.get('env/getMsNames/' + target.value).then((result) => {
+        API.get('env/getStatus/namespaces/' + target.value).then((result) => {
             this.msDetails = result.data;
             this.setState({ namespace: target.value });
         }).catch((err) => {

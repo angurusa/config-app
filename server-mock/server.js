@@ -34,7 +34,7 @@ app.post('/env/validatemsenv/', (req, res) => {
     }
 });
 
-app.get('/env/getMsNames/:namespace', (req, res) => {
+app.get('env/getStatus/namespaces/:namespace', (req, res) => {
     console.log('GET: received list of ms names in ' + req.params.namespace);
     res.send(msNames);
 });

@@ -12,13 +12,11 @@ export default class PodTable extends React.Component<PodTableProps, PodTableSta
         return (
             <TableBody className="table-body">            
                 <TableRow>
-                    <TableCell className="pod-name"> {this.props.data.pod.podName} </TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell> {this.props.data.pod.podIp} </TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell> {this.props.data.pod.status} </TableCell>
+                    <TableCell className="pod-header">
+                        <div>Pod name: {this.props.data.pod.podName}</div>
+                        <div>Pod IP: {this.props.data.pod.podIp}</div>
+                        <div>Status: {this.props.data.pod.status}</div>
+                    </TableCell>
                 </TableRow>
                 {
                     this.props.data.pod.mismatchedProperties.map((property, index) => {

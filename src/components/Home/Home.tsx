@@ -16,12 +16,12 @@ export default class Home extends React.Component<HomeProps, HomeState> {
                 <List>
                     <NavLink to="/single" exact={true}>
                         <ListItem button={true}>
-                            <ListItemText primary="Single" />
+                            <ListItemText primary="Difference between pods for a single microservice" />
                         </ListItem>
                     </NavLink>
                     <NavLink to="/multiple" exact={true}>
                         <ListItem button={true} divider={true}>
-                            <ListItemText primary="Multiple" />
+                            <ListItemText primary="Search for mismatched properties in multiple microservices" />
                         </ListItem>    
                     </NavLink>
                     <Divider />

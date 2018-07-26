@@ -20,7 +20,10 @@ export default class CompareInput extends React.Component<CompareInputProps, Com
 
     handleSearchPropertiesSubmit = (properties: string) => {
         const API = config.getAxiosInstance();
-        API.post('/env/validatemsenv/', {properties}).then((result) => {
+        const headers = {
+            'Content-Type': 'application/json',
+        }
+        API.post('/env/validatemsenv/', properties, {headers}).then((result) => {
             const transformedData = result.data.map((singleData: MicroServiceOriginalData) => {
                 return {
                     msName: singleData.msName,

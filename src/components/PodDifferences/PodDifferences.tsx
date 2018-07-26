@@ -20,19 +20,28 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
     constructor(props: PodDifferencesProps) {
         super(props);
         this.state = {
+            errorState: false,
             pods: []
         }
         this.handleMsNameChange = this.handleMsNameChange.bind(this);
     }
 
     handleMsNameChange = (namespace: string, msName: string) => {
+        this.setState(()=>({
+            errorState: false
+        }));
         const API = config.getAxiosInstance();
         API.get('env/getMsPodDetails/namespaces/' + namespace + '/ms/' + msName).then((result) => {
             this.setState(()=>({
+                errorState: false,
                 pods: result.data.pods
             }));
         }).catch((err) => {
             console.log(err);
+            this.setState(()=>({
+                errorState: true,
+                pods: [],
+            }));
         });
     }
 
@@ -44,23 +53,29 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
                     Difference between pods for a single microservice
                 </Typography>
                 <SearchBar data={{}} events={{onChangeMsName: this.handleMsNameChange}} />
-                <section className="pods">
-                    <Paper className="data-paper">
-                        <Table className="data-table" style={{display: 'flex'}}>
-                            {
-                                (Array.isArray(pods) && pods.length > 0) &&
-                                this.getFirstColumn(pods[0])
-                            }
-                            { 
-                                (Array.isArray(pods) && pods.length > 0) &&
-                                pods.map((pod, index)=>{
-                                    // return <Pods key={index} data={{pod}} />
-                                    return <PodTable key={index} data={{pod}} />
-                                })
-                            }
-                        </Table>
-                    </Paper>
-                </section>
+                {
+                    this.state.errorState &&
+                    <div className="error">
+                        There is something wrong. Check back later
+                    </div>
+                }
+                {
+                    (Array.isArray(pods) && pods.length > 0) &&
+                    <section className="pods">
+                        <Paper className="data-paper">
+                            <Table className="data-table" style={{display: 'flex'}}>
+                                {
+                                    this.getFirstColumn(pods[0])
+                                }
+                                { 
+                                    pods.map((pod, index)=>{
+                                        return <PodTable key={index} data={{pod}} />
+                                    })
+                                }
+                            </Table>
+                        </Paper>
+                    </section>
+                }
             </div>
         );
     }
@@ -69,13 +84,10 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
         return (
             <TableBody style={{background: 'lightblue'}}>            
                 <TableRow>
-                    <TableCell className="table-cell"> Pod Name: </TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell className="table-cell"> Pod IP: </TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell className="table-cell"> Status: </TableCell>
+                    <TableCell className="table-cell pod-header">
+                        <div>Pod Details/</div>
+                        <div>Properties</div>
+                    </TableCell>
                 </TableRow>
                 {
                     pod.mismatchedProperties.map((property, index) => {
