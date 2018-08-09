@@ -20,9 +20,14 @@ export default class Home extends React.Component<HomeProps, HomeState> {
                         </ListItem>
                     </NavLink>
                     <NavLink to="/multiple" exact={true}>
-                        <ListItem button={true} divider={true}>
+                        <ListItem button={true}>
                             <ListItemText primary="Search for mismatched properties in multiple microservices" />
                         </ListItem>    
+                    </NavLink>
+                    <NavLink to="/generate-query" exact={true}>
+                        <ListItem button={true} divider={true}>
+                            <ListItemText primary="Generate queries" />
+                        </ListItem>
                     </NavLink>
                     <Divider />
                 </List>

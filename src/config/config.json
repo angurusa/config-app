@@ -1,14 +1,18 @@
 {
     "environment": {
-        "prod": "",
-        "qa": "http://zlt19578.vci.att.com:30001/",
-        "test": "http://zlt19578.vci.att.com:30001/",
-        "dev": "http://zlt19578.vci.att.com:30001/"
+        "prod": "http://localhost:8080/",
+        "stageNP": "http://zlt19455.vci.att.com:30001/",
+        "stageFF": "http://zlt19437.vci.att.com:30001/",
+        "perfFF": "http://zlt19559.vci.att.com:30001/",
+        "test1": "http://zlt19576.vci.att.com:30001/",
+        "test2": "http://zlt23447.vci.att.com:30001/",
+        "dev1": "http://zlt19577.vci.att.com:30001/",
+        "dev2": "http://zlt19578.vci.att.com:30001/",
+        "dev3": "http://zlt23427.vci.att.com:30001/"
     },
     "namespaces": {
-        "com-att-idp": [],
         "com-att-idp-directvnow": ["DirecTVNowOrderMs", "Something else"],
         "com-att-idp-wireless": ["WirelessMs", "Something else"],
-        "com-att-idp-checkout": ["CheckoutMs", "Something else"]
+        "com-att-idp": ["CheckoutMs", "Something else"]
     }
 }

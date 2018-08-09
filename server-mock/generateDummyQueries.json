@@ -1,0 +1,22 @@
+[
+  {
+  "namespace" : "com-att-idp-directvnow",
+  "msName" : "DirecTVNowOrderMs",
+  "envProperties" :
+  [
+   {"name":"cart.dtvcart.url","value":"https://cartms.com-att-idp.svc.cluster.local/msapi/cart/v1/skinnycart/dtvnow"},
+   {"name":"checkout.termsandconditions.dtvnowOsprey","value":"DIRECTV_NOW_OSPREY"},
+   {"name":"catalog.getAllAddons.url","value":"https://catalogms.com-att-idp.svc.cluster.local/msapi/catalog/v1/offers/%s/dtvnAddons"}
+  ]
+  },
+  {
+  "namespace" : "com-att-idp",
+  "msName" : "CatalogMs",
+  "envProperties" :
+  [
+   {"name":"apiclient.rest.profile.baseUrl","value":"https://idmprofilems.com-att-idp-idm.svc.cluster.local/msapi/profile/v1/user"},
+   {"name":"apiclient.rest.wireless.userTypesBasicAuth","value":"true"},
+   {"name":"cache.api.rest.url","value":"http://zlt19668.vci.att.com:8221/cxf/rest/apis/cosc/"}
+  ]
+  }
+]

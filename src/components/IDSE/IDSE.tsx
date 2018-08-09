@@ -15,6 +15,7 @@ import * as config from './../../config';
 import PodDifferences from './../PodDifferences';
 import CompareInput from './../CompareInput';
 import Home from '../Home';
+import GenerateQuery from '../GenerateQuery';
 
 export default class IDSE extends React.Component<IDSEProps, IDSEState> {
     
@@ -74,6 +75,7 @@ export default class IDSE extends React.Component<IDSEProps, IDSEState> {
                         <Route path="/home" exact={true} component={Home} />                        
                         <Route path="/single" exact={true} component={PodDifferences} />
                         <Route path="/multiple" exact={true} component={CompareInput} />
+                        <Route path="/generate-query" exact={true} component={GenerateQuery} />
                         <Redirect from="/" to="/home" />
                     </Switch>
                 </section>

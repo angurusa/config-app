@@ -22,7 +22,7 @@ export default class CompareInput extends React.Component<CompareInputProps, Com
         const API = config.getAxiosInstance();
         const headers = {
             'Content-Type': 'application/json',
-        }
+        };
         API.post('/env/validatemsenv/', properties, {headers}).then((result) => {
             const transformedData = result.data.map((singleData: MicroServiceOriginalData) => {
                 return {

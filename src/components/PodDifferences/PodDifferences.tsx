@@ -31,7 +31,7 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
             errorState: false
         }));
         const API = config.getAxiosInstance();
-        API.get('env/getMsPodDetails/namespaces/' + namespace + '/ms/' + msName).then((result) => {
+        API.get('/env/getMsPodDetails/namespaces/' + namespace + '/ms/' + msName).then((result) => {
             this.setState(()=>({
                 errorState: false,
                 pods: result.data.pods

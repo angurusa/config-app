@@ -1,0 +1,11 @@
+.query-form {
+  display: 'flex';
+  flex-wrap: 'wrap';
+  margin: 20px;
+}
+
+.query-field {
+  display: initial;
+  width: 300px;
+  margin-right: 20px !important;
+}
