@@ -1,6 +1,7 @@
 {
     "environment": {
-        "prod": "http://localhost:8080/",
+        "prodFF": "http://zlp29036.vci.att.com:30001/",
+		"prodNP": "http://zlp04007.vci.att.com:30001/",
         "stageNP": "http://zlt19455.vci.att.com:30001/",
         "stageFF": "http://zlt19437.vci.att.com:30001/",
         "perfFF": "http://zlt19559.vci.att.com:30001/",
@@ -11,8 +12,13 @@
         "dev3": "http://zlt23427.vci.att.com:30001/"
     },
     "namespaces": {
-        "com-att-idp-directvnow": ["DirecTVNowOrderMs", "Something else"],
-        "com-att-idp-wireless": ["WirelessMs", "Something else"],
-        "com-att-idp": ["CheckoutMs", "Something else"]
+		"com-att-idp": [],
+		"com-att-idp-agent": [],
+		"com-att-idp-directvnow": [],
+		"com-att-idp-dpl": [],
+		"com-att-idp-idm": [],
+		"com-att-idp-personalization": [],
+		"com-att-idp-wireless": [],
+		"com-att-idp-tools": [],
     }
 }
