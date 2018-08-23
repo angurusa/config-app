@@ -12,8 +12,8 @@ import './PodDifferences.css';
 
 import SearchBar from './SearchBar';
 import * as config from './../../config';
-import Pods from './Pods';
 import PodTable from './PodTable';
+import { TableHead } from '@material-ui/core';
 
 export default class PodDifferences extends React.Component<PodDifferencesProps, PodDifferencesState> {
 
@@ -47,6 +47,7 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
 
     render() {
         const pods = this.state.pods;
+        const transposedPods = this.transposeArray(pods);
         return (
             <div className="pod-differences">
                 <Typography variant="headline" gutterBottom={true}>
@@ -63,16 +64,20 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
                     (Array.isArray(pods) && pods.length > 0) &&
                     <section className="pods">
                         <Paper className="data-paper">
-                            <Table className="data-table" style={{display: 'flex'}}>
-                                {
-                                    this.getFirstColumn(pods[0])
-                                }
-                                { 
-                                    pods.map((pod, index)=>{
-                                        return <PodTable key={index} data={{pod}} />
-                                    })
-                                }
-                            </Table>
+                            <div style={{overflowX: 'auto'}}>
+                                <Table className="data-table">
+                                    {
+                                        this.getFirstRow(pods)
+                                    }
+                                    <TableBody>
+                                        { 
+                                            transposedPods.map((pod, index)=>{
+                                                return <PodTable key={index} data={{pod}} />
+                                            })
+                                        }
+                                    </TableBody>
+                                </Table>
+                            </div>
                         </Paper>
                     </section>
                 }
@@ -80,25 +85,39 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
         );
     }
 
-    getFirstColumn(pod: Pod) {
+    // This is pure magic in just 4 lines of code. DON'T TOUCH IT
+    transposeArray = (pods: Pod[]) => {
+        if(Array.isArray(pods) && pods.length > 0) {
+            const propertyNames = pods[0].mismatchedProperties.map(prop => prop.name);
+            const podValues = pods.map(pod => pod.mismatchedProperties.map(prop => prop.value));
+            const podsArray = [propertyNames, ...podValues];
+            return podsArray[0].map((col, i) => podsArray.map(row => row[i]));
+        } else {
+            return [];
+        }
+    }
+
+    getFirstRow(pods: Pod[]) {
+        const firstRow = pods.map(pod => ({podName: pod.podName, podIp: pod.podIp, status: pod.status}));
         return (
-            <TableBody style={{background: 'lightblue'}}>            
+            <TableHead>
                 <TableRow>
                     <TableCell className="table-cell pod-header">
-                        <div>Pod Details/</div>
-                        <div>Properties</div>
+                        Pod Details / Properties
                     </TableCell>
+                    {
+                        firstRow.map((pod, index) => {
+                            return (
+                                <TableCell key={index} className="table-cell pod-header">
+                                    Pod Name: {pod.podName} <br />
+                                    Pod Ip: {pod.podIp} <br />
+                                    Status: {pod.status}
+                                </TableCell>
+                            )
+                        })
+                    }
                 </TableRow>
-                {
-                    pod.mismatchedProperties.map((property, index) => {
-                        return (
-                            <TableRow key={index}>
-                                <TableCell className="table-cell"> {property.name} </TableCell>
-                            </TableRow>
-                        )
-                    })
-                }
-            </TableBody>
+            </TableHead>
         );
     }
 

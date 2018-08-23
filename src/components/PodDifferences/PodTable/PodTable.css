@@ -1,10 +1,8 @@
-.table-body {
-  
+.pod-header {
+  background: black;
+  color: white !important;
 }
 
-.pod-header {
-  background: lightblue;
-  font-size: 1rem !important;
-  font-weight: 500 !important;
-  height: 100px;
+tr:nth-child(even) {
+  background-color: #f2f2f2
 }

@@ -6,7 +6,7 @@ export default interface PodTableProps {
 
 // NOTE: This interface should include all and only data that is being passed into the component
 export interface PodTableData {
-  pod: Pod;
+  pod: string[];
 }
 
 // NODE: This interface should include all and only the options that change the style/behavior of the component

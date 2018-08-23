@@ -16,15 +16,12 @@ body, .pod-differences {
 }
 
 .data-table {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
+  table-layout: fixed;
+  min-width: 900px;
 }
 
 .table-cell {
-  font-weight: 500 !important;
-  font-size: 1rem !important;
+  word-wrap: break-word;
 }
 
 .data-paper {

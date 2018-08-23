@@ -13,7 +13,7 @@ export function getCurrentEnv(): string {
 export function getBaseUrl(): string {
     const currentEnv = getCurrentEnv();
     const baseUrl = config.environment[currentEnv];
-    return baseUrl ? baseUrl : 'http://localhost:8088/';
+    return baseUrl ? baseUrl : 'http://localhost:8080/';
 }
 
 export function getNameSpaces(): string[] {
