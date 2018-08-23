@@ -6,7 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import PodDifferencesProps, { Pod } from './PodDifferencesProps';
+import PodDifferencesProps, { Pod, PodDetails } from './PodDifferencesProps';
 import PodDifferencesState from './PodDifferencesState';
 import './PodDifferences.css';
 
@@ -16,6 +16,7 @@ import PodTable from './PodTable';
 import { TableHead } from '@material-ui/core';
 
 export default class PodDifferences extends React.Component<PodDifferencesProps, PodDifferencesState> {
+    firstRow: PodDetails[];
 
     constructor(props: PodDifferencesProps) {
         super(props);
@@ -24,6 +25,7 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
             pods: []
         }
         this.handleMsNameChange = this.handleMsNameChange.bind(this);
+        this.getFirstRow = this.getFirstRow.bind(this);
     }
 
     handleMsNameChange = (namespace: string, msName: string) => {
@@ -48,6 +50,7 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
     render() {
         const pods = this.state.pods;
         const transposedPods = this.transposeArray(pods);
+        const statusSwitch = false;
         return (
             <div className="pod-differences">
                 <Typography variant="headline" gutterBottom={true}>
@@ -81,6 +84,21 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
                         </Paper>
                     </section>
                 }
+                    {
+                        statusSwitch &&
+                        <section className="status-section">
+                            {
+                                this.firstRow && this.firstRow.length > 0 &&
+                                this.firstRow.map((pod, i) => {
+                                    return (
+                                        <div key={i} className="pod-status">
+                                            {pod.podName} : {this.getStatus(pod.status)}
+                                        </div>
+                                    )
+                                })
+                            }
+                        </section>
+                    }
             </div>
         );
     }
@@ -98,7 +116,7 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
     }
 
     getFirstRow(pods: Pod[]) {
-        const firstRow = pods.map(pod => ({podName: pod.podName, podIp: pod.podIp, status: pod.status}));
+        this.firstRow = pods.map(pod => ({podName: pod.podName, podIp: pod.podIp, status: pod.status}));
         return (
             <TableHead>
                 <TableRow>
@@ -106,7 +124,7 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
                         Pod Details / Properties
                     </TableCell>
                     {
-                        firstRow.map((pod, index) => {
+                        this.firstRow.map((pod, index) => {
                             return (
                                 <TableCell key={index} className="table-cell pod-header">
                                     Pod Name: {pod.podName} <br />
@@ -118,6 +136,13 @@ export default class PodDifferences extends React.Component<PodDifferencesProps,
                     }
                 </TableRow>
             </TableHead>
+        );
+    }
+
+    getStatus(status: string) {
+        const style = (status === 'Running') ? 'bulb bulb-on' : 'bulb bulb-off';
+        return (
+            <div className={style}/>
         );
     }
 

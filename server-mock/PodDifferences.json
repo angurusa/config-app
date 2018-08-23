@@ -36,7 +36,7 @@
         {
             "podIp": "10.233.65.48",
             "podName": "directvnoworderms-6445998687-c7qkp",
-            "status": "Running",
+            "status": "Not Running",
             "mismatchedProperties": [
                 {
                     "name": "catalina.base",

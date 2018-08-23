@@ -27,3 +27,9 @@ export interface PodDifferencesObject {
   pods: Pod[];
   podIps: string[];
 }
+
+export interface PodDetails {
+  podName: string;
+  podIp: string;
+  status: string;
+}
